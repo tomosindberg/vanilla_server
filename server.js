@@ -8,6 +8,9 @@
 // Tests: 4pts
 // Routes: 4pts
 // Organization and gulpfile/package.json 2pts
+
+//superagent localhost:3000 post \{ someeval: "'some string'" \}
+
 'use strict';
 var http =require ('http');
 var htttpServer = module.exports;

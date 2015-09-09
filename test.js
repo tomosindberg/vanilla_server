@@ -19,7 +19,8 @@ chai.use(chaiHttp);
 // });
 
 chai.request('localhost:3000')
-  .put('/greet/tomo')
+  .get('/')
+  // .put('/greet/tomo')
   .send({ person: 'tomo', })
   .then(function (res){
     expect(res).to.have.status(200);
