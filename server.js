@@ -1,12 +1,4 @@
-// For this assignment you should write an http server in vanilla node
-// that responds to several different routes.
-// The server should respond to a request to /time
-// that will send back the current time of the server.
-// It should also respond to a get request to
-// /greet/name where name is any single word string.
-// It should send back a string that greets that name.
-// It should also have a separate post request
-// to /greet that takes the name in JSON format.
+
 // There should be tests using chaiHTTP for both routes,
 // as well as a Gruntfile/package.json
 
@@ -18,39 +10,41 @@
 // Organization and gulpfile/package.json 2pts
 'use strict';
 var http =require ('http');
-
+var htttpServer = module.exports;
 
 
 var server = http.createServer(function(req, res) {
-  if (req.url === '/greet') {
-    res.writeHead(200, {
-      'Content-Type': 'text/plain'
-    });
-    res.write('hello ' + req.url);
+  var currentDate = new Date();
+  var time = currentDate.getHours() + ":" +
+      currentDate.getMinutes();
+
+  if (req.url === '/time') {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.write('current time:' + time);
     return res.end();
   }
 
-//   if (req.method === 'POST') {
-//     req.on('data', function(data) {
-//       var parsed = JSON.parse(data.toString());
-//       console.log(parsed.somevl);
-//     });
+  //superagent localost:3000/ post \ {person: "'stan'"} \
+   if (req.method === 'POST') {
+    req.on('data', function(data) {
+      var parsed = JSON.parse(data.toString());
+      res.write(JSON.stringify({msg: 'hello ' + parsed.person}));
+    });
+  }
 
-//     res.writeHead(200, {
-//       'Content-Type': 'application/json'
-//     });
+  var greetAddress = req.url.slice(0,6);
+  if (greetAddress === '/greet') {
 
-//     res.write('{"msg": "success!"}');
-//     return res.end();
-//   }
-
-//   res.writeHead(404, {
-//     'Content-Type': 'text/plain'
-//   });
-
-//   res.write('page not foud');
-//   res.end();
-// });
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    var user = req.url.slice(7);
+    res.write('hello ' + user);
+    return res.end();
+  }
+  res.writeHead(404, {
+    'Content-Type': 'text/plain'
+  });
+  console.log('server error');
+});
 
 server.listen(3000, function() {
   console.log('server up');

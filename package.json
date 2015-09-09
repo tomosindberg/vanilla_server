@@ -1,0 +1,25 @@
+{
+  "name": "vanilla_server",
+  "version": "0.1.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomosindberg/vanilla_server.git"
+  },
+  "author": "Tomo Sindberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomosindberg/vanilla_server/issues"
+  },
+  "homepage": "https://github.com/tomosindberg/vanilla_server",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "chai-http": "^1.0.0",
+    "mocha": "^2.3.2"
+  }
+}
