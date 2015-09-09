@@ -11,28 +11,31 @@ var server = http.createServer(function(req, res) {
   var time = currentDate.getHours() + ":" +
       currentDate.getMinutes();
 
+// superagent localhost:3000/time
   if (req.url === '/time') {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write('current time:' + time);
     return res.end();
   }
 
-  //superagent localost:3000/ post \ {person: "'stan'" \}
+  //superagent localost:3000/greet/stan post \{person: "'stan'" \}
    if (req.method === 'POST') {
     req.on('data', function(data) {
       var parsed = JSON.parse(data.toString());
-      res.write(JSON.stringify({msg: 'hello ' + parsed.person}));
+      console.log(parsed.person);
+      // res.write(JSON.stringify({msg: 'hello ' + parsed.person}));
     });
   }
 
-  var greetAddress = req.url.slice(0,6);
-  if (greetAddress === '/greet') {
-
+  var path = req.url.split('/');
+  if (path[1] === 'greet') {
+    // console.log(req.url);
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    var user = req.url.slice(7);
-    res.write('hello ' + user);
+    // var user = req.url.slice(7);
+    res.write('hello ' + path[2]);
     return res.end();
   }
+
   res.writeHead(404, {
     'Content-Type': 'text/plain'
   });
