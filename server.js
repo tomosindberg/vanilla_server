@@ -1,14 +1,4 @@
 
-// There should be tests using chaiHTTP for both routes,
-// as well as a Gruntfile/package.json
-
-//GET OR REQ
-//req.url: = '/'  -> need to grab name
-// Rubric:
-// Tests: 4pts
-// Routes: 4pts
-// Organization and gulpfile/package.json 2pts
-
 //superagent localhost:3000 post \{ someeval: "'some string'" \}
 
 'use strict';
@@ -27,7 +17,7 @@ var server = http.createServer(function(req, res) {
     return res.end();
   }
 
-  //superagent localost:3000/ post \ {person: "'stan'"} \
+  //superagent localost:3000/ post \ {person: "'stan'" \}
    if (req.method === 'POST') {
     req.on('data', function(data) {
       var parsed = JSON.parse(data.toString());
